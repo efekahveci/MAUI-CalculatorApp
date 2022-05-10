@@ -4,16 +4,18 @@
              x:Class="MAUI__Calculator_App.MainPage"
              Padding="{OnPlatform iOS='0,20,0,0'}"
              BackgroundColor="White">
-             
+
 
     <Grid 
         Padding="5,0"
         BackgroundColor="Black"
         ColumnSpacing="1"
         RowSpacing="1">
-        
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -31,22 +33,41 @@
 
 
         <Label
-            x:Name="result"
+            x:Name="historyView"
             Grid.ColumnSpan="4"
+            Grid.Row="0"
+            Grid.RowSpan="1"
+            BackgroundColor="Black"
+            FontAttributes="Bold"
+            FontSize="28"
+            LineBreakMode="NoWrap"
+            HorizontalTextAlignment="End"
+
+            TextColor="White"
+            VerticalTextAlignment="Center"
+
+            />
+
+        <Label
+            x:Name="resultView"
+            Grid.ColumnSpan="4"
+            Grid.RowSpan="1"
+            Grid.Row="1"
             BackgroundColor="Black"
             FontAttributes="Bold"
             FontSize="36"
             HorizontalTextAlignment="End"
             LineBreakMode="NoWrap"
-            Text="Sonuç Çıktısı"
+            Text="Result"
             TextColor="White"
             VerticalTextAlignment="Center"
 
             />
         <Button
             
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="0"
+            Grid.ColumnSpan="2"
             Grid.RowSpan="1"
             BackgroundColor="DarkRed"
             FontSize="28"
@@ -56,31 +77,21 @@
             Clicked="Clear"
              
             />
+
         <Button
-            Grid.Row="1"
-            Grid.Column="1"
-            Grid.RowSpan="1"
-            BackgroundColor="DarkCyan"
-            FontSize="28"
-            Text="+/_"
-            TextColor="White"
-            CornerRadius="30"
-            Clicked="Clear"
-             
-            />
-        <Button
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="2"
             BackgroundColor="DarkCyan"
             FontSize="28"
             Text="%"
             TextColor="White"
             CornerRadius="30"
+            Clicked="OperatorSelect"
        
              
             />
         <Button
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="3"
             BackgroundColor="DarkCyan"
             FontSize="28"
@@ -92,7 +103,7 @@
             />
         <Button
             
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="0"
             Grid.RowSpan="1"
             BackgroundColor="SaddleBrown"
@@ -104,7 +115,7 @@
              
             />
         <Button
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="1"
             Grid.RowSpan="1"
             BackgroundColor="SaddleBrown"
@@ -116,7 +127,7 @@
              
             />
         <Button
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="2"
             BackgroundColor="SaddleBrown"
             FontSize="28"
@@ -127,11 +138,11 @@
              
             />
         <Button
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="3"
             BackgroundColor="DarkCyan"
             FontSize="28"
-            Text="X"
+            Text="x"
             TextColor="White"
             CornerRadius="30"
             Clicked="OperatorSelect"
@@ -139,7 +150,7 @@
             />
         <Button
             
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="0"
             Grid.RowSpan="1"
             BackgroundColor="SaddleBrown"
@@ -151,7 +162,7 @@
              
             />
         <Button
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="1"
             Grid.RowSpan="1"
             BackgroundColor="SaddleBrown"
@@ -163,7 +174,7 @@
              
             />
         <Button
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="2"
             BackgroundColor="SaddleBrown"
             FontSize="28"
@@ -174,7 +185,7 @@
              
             />
         <Button
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="3"
             BackgroundColor="DarkCyan"
             FontSize="28"
@@ -186,7 +197,7 @@
             />
         <Button
             
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="0"
             Grid.RowSpan="1"
             BackgroundColor="SaddleBrown"
@@ -198,7 +209,7 @@
              
             />
         <Button
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="1"
             Grid.RowSpan="1"
             BackgroundColor="SaddleBrown"
@@ -210,7 +221,7 @@
              
             />
         <Button
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="2"
             BackgroundColor="SaddleBrown"
             FontSize="28"
@@ -221,7 +232,7 @@
              
             />
         <Button
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="3"
             BackgroundColor="DarkCyan"
             FontSize="28"
@@ -231,35 +242,25 @@
             Clicked="OperatorSelect"
              
             />
-        
+
         <Button
             
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="0"
             Grid.RowSpan="1"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             BackgroundColor="SaddleBrown"
             FontSize="28"
             Text="0"
             TextColor="White"
             CornerRadius="30"
-            Clicked="AddZero"
+            Clicked="NumberSelect"
              
             />
-     
+
+
         <Button
-            Grid.Row="5"
-            Grid.Column="2"
-            BackgroundColor="SaddleBrown"
-            FontSize="28"
-            Text="."
-            TextColor="White"
-            CornerRadius="30"
-        
-             
-            />
-        <Button
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="3"
             BackgroundColor="DarkCyan"
             FontSize="28"
@@ -271,5 +272,5 @@
             />
 
     </Grid>
-    
+
 </ContentPage>

@@ -2,67 +2,65 @@
 
 public partial class MainPage : ContentPage
 {
-	private int current = 1;
-	private string val1, val2;
-	string omath, press;
-	public MainPage()
-	{
-		InitializeComponent();
-	}
 
-	void Clear(object sender, EventArgs e)
-	{
-		val1 = "0";
-		val2 = "0";
-		current = 1;
-		this.result.Text = "0";
-	}
-	void AddZero(object sender, EventArgs e)
-	{
-		Button button = sender as Button;
-		press = press + button.Text;
+    private string val1, val2, omath, press;
 
-		if (val1 != "0")
-			val1 = val1 + button.Text;
-		else
-			val2 = val2 + button.Text;
+    public MainPage()
+    {
+        InitializeComponent();
+    }
 
-		this.result.Text = press;
-	}
-	void NumberSelect(object sender, EventArgs e)
-	{
+    void Clear(object sender, EventArgs e)
+    {
+        val1 = null;
+        val2 = null;
+        historyView.Text = "";
+        resultView.Text = "0";
+    }
 
-		Button button = sender as Button;
+    void NumberSelect(object sender, EventArgs e)
+    {
 
+        Button button = sender as Button;
+        press = button.Text;
 
-		press = button.Text;
-		this.result.Text = press;
+        historyView.Text += press;
+        resultView.Text = press;
 
+        if (!System.Text.RegularExpressions.Regex.IsMatch(historyView.Text, @"[^0-9]"))
+        {
+            val1 += press;
 
+        }
+        else
+        {
 
-		if (current == 1)
-		{
-			val1 = press;
-			current++;
-		}
-		else
-		{
-			val2 = press;
-			current--;
-		}
+            val2 += press;
 
-	}
+        }
 
-	void OperatorSelect(object sender, EventArgs e)
-	{
-		Button button = sender as Button;
+    }
 
-		omath = button.Text;
-	}
+    void OperatorSelect(object sender, EventArgs e)
+    {
+        Button button = sender as Button;
 
-	void Calculate(object sender, EventArgs e)
-	{
-		this.result.Text = Calc.Do(Convert.ToDouble(val1), Convert.ToDouble(val2), omath).ToString();
-	}
+        omath = button.Text;
+        resultView.Text = omath;
+        historyView.Text += omath;
+    }
+
+    void Calculate(object sender, EventArgs e)
+    {
+        historyView.Text = "=" + resultView.Text;
+
+        resultView.Text = Calc.Do(Convert.ToDouble(val1), Convert.ToDouble(val2), omath).ToString();
+
+        historyView.Text = resultView.Text;
+
+        val1 = resultView.Text;
+        val2 = "";
+
+    }
 }
 
